@@ -28,6 +28,7 @@ or download the project
 php artisan migrate
 
 #Step 6 : Now we are ready to run the project
+
 php artisan serve
 
 Here is Routes URL with Verb:
