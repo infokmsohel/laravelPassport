@@ -8,7 +8,7 @@ You have to just follow few step to get following web services.
 
 2)Register API
 
-3)Details API
+
 
 #Step 1 :
 write command on git cmd or cmd 
