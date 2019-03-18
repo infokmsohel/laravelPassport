@@ -24,6 +24,7 @@ or download the project
 #Step 4 :setup database and connect
 
 #Step 5 :Run Migration and Install
+
 php artisan migrate
 
 #Step 6 : Now we are ready to run the project
