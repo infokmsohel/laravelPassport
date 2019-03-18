@@ -23,14 +23,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+    public function login(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);
+        }
+
+        $credentials = request(['email', 'password']);
+
+        if(Auth::attempt($credentials)){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            return $this->sendResponse(['success' => $success], 'login successfull');
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+//            return response()->json(['error'=>'Unauthorised'], 401);
+            return $this->sendError('login password or email did not match');
+
         }
     }
 
@@ -44,7 +58,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|unique:users,email',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
@@ -62,7 +76,8 @@ class UserController extends Controller
         $success['name'] =  $user->name;
 
 
-        return response()->json(['success'=>$success], $this->successStatus);
+//        return response()->json(['success'=>$success], $this->successStatus);
+        return $this->sendResponse(['success'=>$success], 'Registration successfully done');
     }
 
 

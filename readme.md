@@ -31,7 +31,8 @@ php artisan serve
 
 Here is Routes URL with Verb:
 
-1) Register: Verb:POST, URL:http://127.0.0.1:8000/api/v1/register
-2) Login: Verb:POST, URL:http://127.0.0.1:8000/api/v1/login
+1) Register: Verb:POST, URL:http://localhost:8000/api/v1/register
+2) Login: Verb:POST, URL:http://localhost:8000/api/v1/login
+3) details: Verb:POST, URL:http://localhost:8000/api/v1/login
  
 
